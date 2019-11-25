@@ -92,3 +92,25 @@ function onListening() {
     : 'port ' + addr.port
   debug('Listening on ' + bind)
 }
+
+/**
+ * Connect to the MySQL database
+ */
+
+var mysql      = require('mysql');
+/* This config should be moved to a local config file. */
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'root',
+  database : 'OrderSystem'
+});
+connection.connect();
+
+connection.query('SELECT * from OrderSystem.orders', function (error, results, fields) {
+  if (error) throw error;
+  console.log('The first order is: ', results[0]);
+});
+
+connection.end();
+
