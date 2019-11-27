@@ -5,7 +5,7 @@ export default {
   getInitMsg () {
     console.log(tag, 'getInitMsg()')
     if (window.fetch) {
-      return fetch('/message', {
+      return fetch('/api/message', {
         method: 'get',
         headers: { 'Content-Type': 'application/json' }
       })
@@ -16,7 +16,7 @@ export default {
     // for IE
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest()
-      xhr.open('get', '/message', true)
+      xhr.open('get', '/api/message', true)
       xhr.setRequestHeader('Content-type', 'application/json')
       xhr.onload = function () {
         let msg = JSON.parse(this.responseText).msg

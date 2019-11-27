@@ -1,0 +1,11 @@
+#sidebar {
+    display:flex;
+
+    .sidebar {
+        display:flex;
+        flex-direction: column;
+        height: auto;
+        width: 300px;
+        background-color: #f1ede4;
+    }
+}

@@ -1,26 +1,13 @@
 // componenets
-import HelloWorld from './components/HelloWorld/HelloWorld.vue'
-
-// models
-import msg from './models/Message.js'
+import Dashboard from './components/Dashboard/Dashboard.vue'
+import Navbar from './components/Navbar/Navbar.vue'
+import Sidebar from './components/Sidebar/Sidebar.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
-  },
-  data () {
-    return {
-      greeting: ''
-    }
-  },
-  created () {
-    this.getMsg()
-  },
-  methods: {
-    getMsg () {
-      return msg.getInitMsg()
-        .then(msg => this.greeting = msg)
-    }
+    Navbar,
+    Sidebar,
+    Dashboard
   }
 }

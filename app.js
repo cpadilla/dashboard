@@ -6,6 +6,8 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 
+const history = require('connect-history-api-fallback');
+
 const messageRouter = require('./routes/message')
 
 const app = express()
@@ -16,7 +18,14 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'dist')))
 
-app.use('/message', messageRouter)
+app.use('/api', messageRouter)
+
+app.use(history({
+    verbose:true,
+    rewrites: [
+        { from: /\/api/, to: '/api'}
+    ]
+}))
 
 /**
  * Get port from environment and store in Express.
