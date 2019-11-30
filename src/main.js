@@ -3,9 +3,13 @@ import VueRouter from 'vue-router'
 import App from './App.vue'
 import Dashboard from './components/Dashboard/Dashboard.vue'
 
+import './custom.scss'
+import BootstrapVue from 'bootstrap-vue'
+
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
+Vue.use(BootstrapVue)
 
 // 1. Define route components.
 // These can be imported from other files

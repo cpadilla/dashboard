@@ -1,3 +1,22 @@
-#navbar
-    div.header
-        img(alt='RP Funding',src='../../assets/rpfundinglogo.png').logo
+b-navbar(toggleable="lg" type="dark" variant="primary" fixed="top")
+    b-navbar-brand(to="/")
+        img(alt='RP Funding' src='../../assets/rpfundinglogo.png').logo
+
+    b-navbar-toggle(target="nav-collapse")
+
+    b-collapse(is-nav)#nav-collapse
+
+      // Right aligned nav items
+      b-navbar-nav.ml-auto
+        // Search bar
+        b-nav-form
+          b-form-input(size="sm" placeholder="Search").mr-sm-2
+          b-button(size="sm" type="submit").my-2.my-sm-0 Search
+
+        // Orders
+        b-nav-item(to="/orders") Orders
+
+        // User
+        b-nav-item-dropdown(text="User" right)
+          b-dropdown-item(href="#") Profile
+          b-dropdown-item(href="#") Sign Out

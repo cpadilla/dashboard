@@ -6,7 +6,7 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 
-const history = require('connect-history-api-fallback');
+const history = require('connect-history-api-fallback')
 
 const messageRouter = require('./routes/message')
 
@@ -117,8 +117,11 @@ var connection = mysql.createConnection({
 connection.connect();
 
 connection.query('SELECT * from OrderSystem.orders', function (error, results, fields) {
-  if (error) throw error;
-  console.log('The first order is: ', results[0]);
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('The first order is: ', results[0]);
+  }
 });
 
 connection.end();

@@ -1,0 +1,7 @@
+/* Override some default Bootstrap themes */
+$primary: #0073bd;
+
+// Bootstrap and its default values
+@import '../node_modules/bootstrap/scss/bootstrap';
+// BootstrapVue and its default variables
+@import '../node_modules/bootstrap-vue/src/index.scss';
