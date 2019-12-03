@@ -4,5 +4,5 @@
 
     .error(v-if="error") {{ error }}
 
-    h1 {{ greeting }}
-    p {{ orders }}
+    div
+        b-table(stripped hover :items="orders" :fields="fields")

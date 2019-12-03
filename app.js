@@ -105,9 +105,10 @@ function onListening() {
 /**
  * Connect to the MySQL database
  */
+/*
 
 var mysql      = require('mysql');
-/* This config should be moved to a local config file. */
+// This config should be moved to a local config file.
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -126,3 +127,4 @@ connection.query('SELECT * from OrderSystem.orders', function (error, results, f
 
 connection.end();
 
+*/

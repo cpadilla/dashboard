@@ -5,17 +5,44 @@ export default {
   name: 'Dashboard',
   data () {
       return {
-          loading: false,
-          error: null,
-          greeting: ''
+        loading: false,
+        error: null,
+        greeting: '',
+        fields: [
+          {
+            key: 'orderId',
+            sortable: true
+          },
+          {
+            key: 'orderStatusId',
+            sortable: true
+          },
+          {
+            key: 'orderDescription',
+            sortable: true
+          },
+          {
+            key: 'createDate',
+            sortable: true
+          },
+          {
+            key: 'shippedDate',
+            sortable: true
+          },
+          {
+            key: 'shippingAddressId',
+            sortable: true
+          }
+        ],
+        orders: [
+        ]
       }
   },
   created () {
-    this.getMsg()
+    this.getOrders()
   },
   props: {
-    msg: String,
-    orders: []
+    msg: String
   },
   /*
   watch: {
@@ -24,15 +51,13 @@ export default {
   },
   */
   methods: {
-    getMsg () {
+    getOrders () {
       this.error = null
       this.loading = true
-      return msg.getInitMsg()
+      return msg.getOrders()
         .then(msg => {
-            console.log("message received: ")
-            console.log(msg);
             this.loading = false
-            this.greeting = msg
+            this.orders = msg.orders
         }).catch(err => {
             console.log("error received: ")
             console.log(err);

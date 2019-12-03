@@ -2,21 +2,28 @@ const tag = '[MessageModel]'
 
 export default {
   // get Initial Msg from Server
-  getInitMsg () {
-    console.log(tag, 'getInitMsg()')
+  getOrders () {
+    console.log(tag, 'getOrders()')
     if (window.fetch) {
-      return fetch('/api/message', {
-        method: 'get',
-        headers: { 'Content-Type': 'application/json' }
-      })
-        .then(res => res.json())
-        .then(json => json.msg)
-        .catch(err => { throw new Error(err) })
+      return new Promise((resolve, reject) => {
+        fetch('/api/orders', {
+          method: 'get',
+          headers: { 'Content-Type': 'application/json' }
+        })
+        .then(res => {
+          res.json().then(orders => {
+            resolve(orders);
+          });
+        })
+        .catch(err => {
+          reject(err);
+        });
+      });
     }
     // for IE
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest()
-      xhr.open('get', '/api/message', true)
+      xhr.open('get', '/api/orders', true)
       xhr.setRequestHeader('Content-type', 'application/json')
       xhr.onload = function () {
         let msg = JSON.parse(this.responseText).msg
