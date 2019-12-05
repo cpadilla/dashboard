@@ -15,11 +15,11 @@ export default {
       }
   },
   created () {
-    console.log(this.$route);
+    console.log(this.filter);
     this.locateOrder(this.$route.params.addressId)
   },
   props: {
-    msg: String
+    filter: null
   },
   methods: {
     goBack() {

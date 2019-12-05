@@ -1,19 +1,14 @@
 // models
 import msg from '../../models/Message.js'
-import Orders from '../../components/Orders/Orders.vue'
 import { mapState } from 'vuex'
 
 export default {
-  name: 'Dashboard',
-  components: {
-      Orders
-  },
+  name: 'Orders',
   data () {
       return {
         isBusy: false,
         error: null,
         greeting: '',
-        filter: 1,
         fields: [
           {
             key: 'Status',
@@ -47,17 +42,17 @@ export default {
   },
   created () {
     // get orders on load
-    this.getOrders(this.$route.params.filter);
+    this.getOrders(this.filter);
     // watch for state change
     this.$store.watch(
           (count, getters) => getters.count,
           (newValue, oldValue) => {
-              this.getOrders(this.$route.params.filter);
+            this.getOrders(this.filter);
           }
     )
   },
   props: {
-    msg: String
+    filter: null
   },
   watch: {
       // call again the method if the route changes
@@ -65,6 +60,7 @@ export default {
   },
   methods: {
     getOrders (filter) {
+      console.log("getOrders: ", filter)
       this.error = null
       this.isBusy = true
       return msg.getOrders(filter)

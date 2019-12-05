@@ -11,7 +11,6 @@ export default {
   },
   methods: {
     addOrder() {
-      console.log(this.$refs.modal.order)
       axios.post('/api/addOrder', this.$refs.modal.order)
       .then(res => {
         console.log("successfully added order");

@@ -1,10 +1,11 @@
-.hello
-
-    .loading(v-if="isBusy") Loading...
-
-    .error(v-if="error") {{ error }}
-
-    div
-        b-table(stripped hover :items="orders" :fields="fields")
-            template(v-slot:cell(shippingAddressId)="data")
-                b-button(v-if="data.value > 0" variant="primary" :to="{ path: 'locate/'+data.value, params: { addressId: data.value } }") Locate
+div
+    b-card(no-body)
+        b-tabs(pills justified card)
+            b-tab(title="Ordered" active)
+                Orders(filter=1)
+            b-tab(title="Processing")
+                Orders(filter=2)
+            b-tab(title="Shipped")
+                Orders(filter=3)
+            b-tab(title="Received")
+                Orders(filter=4)

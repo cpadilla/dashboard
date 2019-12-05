@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import Dashboard from './components/Dashboard/Dashboard.vue'
+import Orders from './components/Orders/Orders.vue'
 import Map from './components/Map/Map.vue'
 
 // import custom styling to overwrite bootstrap theme
@@ -24,7 +25,7 @@ const store = new Vuex.Store({
   getters: {
     count(state) {
       return state.count
-    }
+    },
   },
   mutations: {
     increment (state) {
@@ -35,8 +36,8 @@ const store = new Vuex.Store({
 
 // Map each route to component
 const routes = [
-  { path: '/', component: Dashboard },
-  { path: '/orders', component: Dashboard },
+  { path: '/', redirect: '/orders'},
+  { path: '/orders', component: Dashboard, name: 'orders' },
   { path: '/locate/:addressId', component: Map },
 ]
 

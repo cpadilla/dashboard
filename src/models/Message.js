@@ -2,11 +2,10 @@ const tag = '[MessageModel]'
 
 export default {
   // get Initial Msg from Server
-  getOrders () {
-    console.log(tag, 'getOrders()')
+  getOrders (filter) {
     if (window.fetch) {
       return new Promise((resolve, reject) => {
-        fetch('/api/orders', {
+        fetch('/api/orders/' + filter, {
           method: 'get',
           headers: { 'Content-Type': 'application/json' }
         })
@@ -23,7 +22,7 @@ export default {
     // for IE
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest()
-      xhr.open('get', '/api/orders', true)
+      xhr.open('get', '/api/orders' + filter, true)
       xhr.setRequestHeader('Content-type', 'application/json')
       xhr.onload = function () {
         let msg = JSON.parse(this.responseText).msg
@@ -33,7 +32,6 @@ export default {
     })
   },
   getAddress(addressId) {
-    console.log(tag, 'getAddress(' + addressId + ')')
     if (window.fetch) {
       return new Promise((resolve, reject) => {
         fetch('/api/locate/' + addressId, {

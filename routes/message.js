@@ -43,6 +43,7 @@ class Database {
 var database = new Database(config);
 
 function getOrders(req, res, next) {
+  var filter = req.params.filter;
   console.log("api/orders called");
 
   var query_str = "SELECT " +
@@ -54,7 +55,7 @@ function getOrders(req, res, next) {
                   "OrderSystem.orders.shippingAddressId FROM orders " +
                   "INNER JOIN OrderSystem.orderStatus " +
                   "ON OrderSystem.orders.orderStatusId = OrderSystem.orderStatus.orderStatusId " +
-                  "WHERE OrderSystem.orderStatus.name = 'Ordered'"
+                  "WHERE OrderSystem.orderStatus.orderStatusId = " + mysql.escape(filter)
   database.query(query_str).then( rows => {
     // do something with the result
     let msg = { orders: rows }
@@ -131,7 +132,7 @@ function addOrder(req, res, next) {
 /* ========================================
 
 /* GET users listing. */
-router.get('/orders', getOrders);
+router.get('/orders/:filter', getOrders);
 router.get('/locate/:addressId', getAddress);
 router.post('/addOrder', addOrder);
 
