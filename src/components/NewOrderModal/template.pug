@@ -1,0 +1,32 @@
+div
+    b-container(fluid)
+        b-row
+            b-col(sm="3")
+                label(:for="order.orderStatus") Order Status
+            b-col(sm="9")
+                b-form-select(v-model="order.orderStatus" :options="statuses")#orderStatus
+        b-row
+            b-col(sm="3")
+                label(:for="order.description") Description
+            b-col(sm="9")
+                b-form-textarea(v-model="order.description" placeholder="Please enter a description")#description 
+        b-row
+            b-col(sm="3")
+                label(:for="order.address")  Address
+            b-col(sm="9")
+                b-form-input(v-model="order.address")#address
+        b-row
+            b-col(sm="3")
+                label(:for="order.city") City
+            b-col(sm="9")
+                b-form-input(v-model="order.city")#city
+        b-row
+            b-col(sm="3")
+                label(:for="order.states") States
+            b-col(sm="9")
+                b-form-select(v-model="order.state" :options="states")#states
+        b-row
+            b-col(sm="3")
+                label(:for="order.zip") Zip Code
+            b-col(sm="9")
+                b-form-input(v-model="order.zip")#zip

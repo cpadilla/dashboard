@@ -22,7 +22,7 @@ export default {
             sortable: true
           },
           {
-            key: 'Created Date',
+            key: 'Create Date',
             sortable: true
           },
           {
@@ -59,6 +59,7 @@ export default {
         .then(msg => {
             this.isBusy = false
             this.orders = msg.orders
+            console.log(msg.orders);
         }).catch(err => {
             console.log("error received: ")
             console.log(err);

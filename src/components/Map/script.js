@@ -15,7 +15,8 @@ export default {
       }
   },
   created () {
-    this.locateOrder("1")
+    console.log(this.$route);
+    this.locateOrder(this.$route.params.addressId)
   },
   props: {
     msg: String

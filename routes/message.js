@@ -83,6 +83,49 @@ function getAddress(req, res, next) {
   });
 }
 
+function addOrder(req, res, next) {
+  console.log("api/addOrder called");
+  console.log(req.body);
+
+  var order = req.body;
+  var insert_address_query = "INSERT INTO shippingAddress values (null, " +
+    mysql.escape(order.address) + ", " +
+    mysql.escape(order.city) + ", " +
+    mysql.escape(order.state) + ", " +
+    mysql.escape(order.zip) +")";
+
+  database.query(insert_address_query).then( rows => {
+    // do something with the result
+    console.log("successful insert...");
+
+    var addressId_query = "SELECT LAST_INSERT_ID() as id;";
+    database.query(addressId_query).then( rows => {
+      var shippingAddressId = rows[0].id;
+      console.log("shippingAddressId: ", shippingAddressId);
+
+      var insert_order_query = "INSERT INTO orders values (null, " +
+        mysql.escape(order.orderStatus) + ", " +
+        mysql.escape(order.description) + ", NOW(), null, " +
+        shippingAddressId + ")";
+      database.query(insert_order_query).then( rows => {
+        console.log("successfully inserted new order");
+        res.end()
+      }).catch(err => {
+        console.log("Error: ", err)
+      })
+    }).catch(err => {
+      console.log("Error: ", err)
+    })
+
+    //let msg = { address: rows[0] }
+    //msg.orders = rows;
+    //res.json(msg).end()
+  })
+  .catch(err => {
+    console.log("Error: ", err)
+  });
+}
+
 /* ========================================
  *                Routes
 /* ========================================
@@ -90,5 +133,6 @@ function getAddress(req, res, next) {
 /* GET users listing. */
 router.get('/orders', getOrders);
 router.get('/locate/:addressId', getAddress);
+router.post('/addOrder', addOrder);
 
 module.exports = router
