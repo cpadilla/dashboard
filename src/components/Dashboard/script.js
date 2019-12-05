@@ -5,32 +5,33 @@ export default {
   name: 'Dashboard',
   data () {
       return {
-        loading: false,
+        isBusy: false,
         error: null,
         greeting: '',
         fields: [
           {
-            key: 'orderId',
+            key: 'Status',
             sortable: true
           },
           {
-            key: 'orderStatusId',
+            key: 'Order ID',
             sortable: true
           },
           {
-            key: 'orderDescription',
+            key: 'Description',
             sortable: true
           },
           {
-            key: 'createDate',
+            key: 'Created Date',
             sortable: true
           },
           {
-            key: 'shippedDate',
+            key: 'Shipped Date',
             sortable: true
           },
           {
             key: 'shippingAddressId',
+            label: 'Address',
             sortable: true
           }
         ],
@@ -53,15 +54,15 @@ export default {
   methods: {
     getOrders () {
       this.error = null
-      this.loading = true
+      this.isBusy = true
       return msg.getOrders()
         .then(msg => {
-            this.loading = false
+            this.isBusy = false
             this.orders = msg.orders
         }).catch(err => {
             console.log("error received: ")
             console.log(err);
-            this.loading = false
+            this.isBusy = false
             this.error = err
         })
     }

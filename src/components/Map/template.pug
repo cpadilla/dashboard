@@ -1,0 +1,11 @@
+.hello
+    .info
+        b-button(pill variant="primary" v-on:click="goBack()").back
+            v-icon(name="arrow-left")
+
+        div
+            h1 {{ address }}
+            h2 {{ city }}, {{ state }} {{ zip }}
+
+            #map
+                iframe(width="600" height="450" frameborder="0" style="border:0" :src="'https://www.google.com/maps/embed/v1/place?key=AIzaSyC2edkQB7OTluBgvlfdrNPDSpKI9dnp9zk&q=' + address" allowfullscreen)

@@ -21,10 +21,7 @@ app.use(express.static(path.join(__dirname, 'dist')))
 app.use('/api', messageRouter)
 
 app.use(history({
-    verbose:true,
-    rewrites: [
-        { from: /\/api/, to: '/api'}
-    ]
+    verbose:true
 }))
 
 /**
@@ -101,30 +98,3 @@ function onListening() {
     : 'port ' + addr.port
   debug('Listening on ' + bind)
 }
-
-/**
- * Connect to the MySQL database
- */
-/*
-
-var mysql      = require('mysql');
-// This config should be moved to a local config file.
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'root',
-  database : 'OrderSystem'
-});
-connection.connect();
-
-connection.query('SELECT * from OrderSystem.orders', function (error, results, fields) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('The first order is: ', results[0]);
-  }
-});
-
-connection.end();
-
-*/

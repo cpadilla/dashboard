@@ -1,0 +1,25 @@
+.back {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 2rem;
+}
+.icon {
+  width: auto;
+}
+.info {
+  display: flex;
+}
+
+#map {background: transparent url(../../assets/loading.gif) no-repeat center center;}
+
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}

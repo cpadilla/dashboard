@@ -1,8 +1,10 @@
 .hello
 
-    .loading(v-if="loading") Loading...
+    .loading(v-if="isBusy") Loading...
 
     .error(v-if="error") {{ error }}
 
     div
         b-table(stripped hover :items="orders" :fields="fields")
+            template(v-slot:cell(shippingAddressId)="data")
+                b-button(v-if="data.value > 0" variant="success" :to="'/locate/' + data.value") Locate
