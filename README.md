@@ -1,4 +1,4 @@
-# v-template
+# Dashboard
 
 ## Project setup
 ```
