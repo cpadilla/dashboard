@@ -1,5 +1,6 @@
 // models
 import msg from '../../models/Message.js'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Dashboard',
@@ -40,17 +41,23 @@ export default {
       }
   },
   created () {
-    this.getOrders()
+    // get orders on load
+    this.getOrders();
+    // watch for state change
+    this.$store.watch(
+          (count, getters) => getters.count,
+          (newValue, oldValue) => {
+              this.getOrders();
+          }
+    )
   },
   props: {
     msg: String
   },
-  /*
   watch: {
       // call again the method if the route changes
-      '$route': 'getMsg()'
+      '$route': 'getOrders()'
   },
-  */
   methods: {
     getOrders () {
       this.error = null

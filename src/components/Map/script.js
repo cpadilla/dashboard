@@ -21,12 +21,6 @@ export default {
   props: {
     msg: String
   },
-  /*
-  watch: {
-      // call again the method if the route changes
-      '$route': 'getMsg()'
-  },
-  */
   methods: {
     goBack() {
         window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')

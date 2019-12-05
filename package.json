@@ -23,7 +23,8 @@
     "popper.js": "^1.16.0",
     "request": "^2.88.0",
     "vue-icon": "^2.1.1",
-    "vue-router": "^3.1.3"
+    "vue-router": "^3.1.3",
+    "vuex": "^3.1.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.2.0",

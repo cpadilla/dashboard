@@ -14,7 +14,9 @@ export default {
       console.log(this.$refs.modal.order)
       axios.post('/api/addOrder', this.$refs.modal.order)
       .then(res => {
-        console.log("res: ", res);
+        console.log("successfully added order");
+        // commit changes to the state
+        this.$store.commit('increment');
       }).catch(err => {
         console.log("error: ", err);
       })
